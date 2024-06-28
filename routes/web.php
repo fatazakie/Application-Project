@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    Route::get('barang', [HomeController::class, 'index']);
+    Route::get('barang', [BarangController::class, 'index']);
 
 });
