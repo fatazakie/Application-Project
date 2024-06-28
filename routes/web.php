@@ -1,5 +1,9 @@
 <?php
+use App\Http\Controllers\BarangController;
+use App\Models\barang;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     Route::get('barang', [BarangController::class, 'index']);
+
+
 
 });
