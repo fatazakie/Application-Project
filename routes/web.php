@@ -1,5 +1,7 @@
 <?php
+
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\PembelianController;
 use App\Models\barang;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,13 +18,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    Route::get('barang', [BarangController::class, 'index']);
+// Route::get('/', function () {
+//     Route::get('barang', [BarangController::class, 'index']);
 
 
 
-});
+// });
 
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('barang', [BarangController::class, 'index']);
+Route::get('/barang/form/', [BarangController::class, 'create']);
+Route::post('/barang/form/', [BarangController::class, 'store']);
+Route::get('/barang/edit/{id}', [BarangController::class, 'edit']);
+Route::put('/barang/{id}', [BarangController::class, 'update']);
+Route::delete('/barang/{id}', [BarangController::class, 'destroy']);
+
+Route::get('pembelian', [PembelianController::class, 'index']);
+Route::get('/pembelian/form/', [PembelianController::class, 'create']);
+Route::post('/pembelian/form/', [PembelianController::class, 'store']);
+Route::get('/pembelian/edit/{id}', [PembelianController::class, 'edit']);
+Route::put('/pembelian/{id}', [PembelianController::class, 'update']);
+Route::delete('/pembelian/{id}', [PembelianController::class, 'destroy']);
+

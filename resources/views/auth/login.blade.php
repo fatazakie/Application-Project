@@ -41,41 +41,67 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form action="html/index.html">
+                               
+                                <form method="POST" action="{{ route('login') }}" class="user">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                     <div class="form-group">
-                                        <div class="form-label-group">
-                                            <label class="form-label" for="default-01">Email or Username</label>
-                                        </div>
-                                        <div class="form-control-wrap">
-                                            <input type="text" class="form-control form-control-lg" id="default-01" placeholder="Enter your email address or username">
+                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required autofocus>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Password') }}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox small">
+                                            <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            <label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
-                                        <div class="form-label-group">
-                                            <label class="form-label" for="password">Passcode</label>
-                                            <a class="link link-primary link-sm" href="html/pages/auths/auth-reset-v2.html">Forgot Code?</a>
-                                        </div>
-                                        <div class="form-control-wrap">
-                                            <a href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                                            </a>
-                                            <input type="password" class="form-control form-control-lg" id="password" placeholder="Enter your passcode">
-                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            {{ __('Login') }}
+                                        </button>
                                     </div>
+
+                                    <hr>
+
                                     <div class="form-group">
-                                        <button class="btn btn-lg btn-primary btn-block">Sign in</button>
+                                        <button type="button" class="btn btn-github btn-user btn-block">
+                                            <i class="fab fa-github fa-fw"></i> {{ __('Login with GitHub') }}
+                                        </button>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-twitter btn-user btn-block">
+                                            <i class="fab fa-twitter fa-fw"></i> {{ __('Login with Twitter') }}
+                                        </button>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> {{ __('Login with Facebook') }}
+                                        </button>
                                     </div>
                                 </form>
-                                <div class="form-note-s2 text-center pt-4"> New on our platform? <a href="register">Create an account</a>
-                                </div>
-                                <div class="text-center pt-4 pb-3">
-                                    <h6 class="overline-title overline-title-sap"><span>OR</span></h6>
-                                </div>
-                                <ul class="nav justify-center gx-4">
-                                    <li class="nav-item"><a class="nav-link" href="#">Facebook</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Google</a></li>
-                                </ul>
+
+                                <hr>
+
+                                @if (Route::has('password.request'))
+                                    <div class="text-center">
+                                        <a class="small" href="{{ route('password.request') }}">
+                                            {{ __('Forgot Password?') }}
+                                        </a>
+                                    </div>
+                                @endif
+
+                                @if (Route::has('register'))
+                                    <div class="text-center">
+                                        <a class="small" href="{{ route('register') }}">{{ __('Create an Account!') }}</a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

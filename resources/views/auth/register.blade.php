@@ -35,46 +35,59 @@
                             <div class="card-inner card-inner-lg">
                                 <div class="nk-block-head">
                                     <div class="nk-block-head-content">
-                                        <h4 class="nk-block-title">Register</h4>
+                                        <h4 class="nk-block-title">{{ __('Register') }}</h4>
                                         <div class="nk-block-des">
                                             <p>Create New Dashlite Account</p>
                                         </div>
                                     </div>
                                 </div>
-                                <form action="html/pages/auths/auth-success-v2.html">
+
+                                @if ($errors->any())
+                                <div class="alert alert-danger border-left-danger" role="alert">
+                                    <ul class="pl-4 my-2">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                                <form method="POST" action="{{ route('register') }}" class="user">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                     <div class="form-group">
-                                        <label class="form-label" for="name">Name</label>
-                                        <div class="form-control-wrap">
-                                            <input type="text" class="form-control form-control-lg" id="name" placeholder="Enter your name">
-                                        </div>
+                                        <input type="text" class="form-control form-control-user" name="name" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required autofocus>
                                     </div>
+
                                     <div class="form-group">
-                                        <label class="form-label" for="email">Email or Username</label>
-                                        <div class="form-control-wrap">
-                                            <input type="text" class="form-control form-control-lg" id="email" placeholder="Enter your email address or username">
-                                        </div>
+                                        <input type="text" class="form-control form-control-user" name="last_name" placeholder="{{ __('Last Name') }}" value="{{ old('last_name') }}" required>
                                     </div>
+
                                     <div class="form-group">
-                                        <label class="form-label" for="password">Passcode</label>
-                                        <div class="form-control-wrap">
-                                            <a href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                                            </a>
-                                            <input type="password" class="form-control form-control-lg" id="password" placeholder="Enter your passcode">
-                                        </div>
+                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required>
                                     </div>
+
                                     <div class="form-group">
-                                        <div class="custom-control custom-control-xs custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkbox">
-                                            <label class="custom-control-label" for="checkbox">I agree to Dashlite <a href="#">Privacy Policy</a> &amp; <a href="#"> Terms.</a></label>
-                                        </div>
+                                        <input type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Password') }}" required>
                                     </div>
+
                                     <div class="form-group">
-                                        <button class="btn btn-lg btn-primary btn-block">Register</button>
+                                        <input type="password" class="form-control form-control-user" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            {{ __('Register') }}
+                                        </button>
                                     </div>
                                 </form>
-                                <div class="form-note-s2 text-center pt-4"> Already have an account? <a href="login"><strong>Sign in instead</strong></a>
+
+                                <hr>
+
+                                <div class="text-center">
+                                    <a class="small" href="{{ route('login') }}">
+                                        {{ __('Already have an account? Login!') }}
+                                    </a>
                                 </div>
                                 <div class="text-center pt-4 pb-3">
                                     <h6 class="overline-title overline-title-sap"><span>OR</span></h6>

@@ -1,7 +1,7 @@
 
 @extends('layouts.master')
-@section('title','Halaman Barang')
-@section('heading','Halaman Barang')
+@section('title','Halaman Pembelian')
+@section('heading','Halaman Pembelian')
 
 @section('content')
     <div class="card">
@@ -9,16 +9,16 @@
             <li class="breadcrumb-item"><a href="#">Home</a></li>
           </ol>
         <div class="card-header">
-            <a href="/barang/form/" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+            <a href="/pembelian/form/" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data Pembelian</a>
         </div>
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Tabel Barang</h1>
+            <h1 class="h3 mb-2 text-gray-800">Tabel Pembelian</h1>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Tabel Barang</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Tabel Pembelian</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
