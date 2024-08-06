@@ -30,10 +30,9 @@
                         <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                     </div>
                     <div class="nk-sidebar-brand">
-                        {{-- <a href="html/index.html" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                            <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
-                        </a> --}}
+                            {{-- <span class="nk-menu-icon" ><em class="icon ni ni-sign-zcash-alt"></em></span>  --}}
+                       <h4> <span class="nk-menu-text">Zhakie Electric</span></h4>
+
                     </div>
                 </div><!-- .nk-sidebar-element -->
                 <div class="nk-sidebar-element nk-sidebar-body">
@@ -46,13 +45,13 @@
         
                                 <li class="nk-menu-item">
                                     <a href="/barang/" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+                                        <span class="nk-menu-icon"><em class="icon ni ni-list-index-fill"></em></em></span>
                                         <span class="nk-menu-text">Barang</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="/pembelian/" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon fa-regular fa-credit-card"></em></span>
+                                        <span class="nk-menu-icon"><em class="icon ni ni-note-add-fill"></em></span>
                                         <span class="nk-menu-text">Pembelian</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->

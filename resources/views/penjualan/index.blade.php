@@ -61,7 +61,7 @@
                                         <a href="barang" class="btn-close" data-dismiss="modal" aria-label="Close"></a>
                                         </div>
                                         <div class="modal-body">
-                                        Yakin Data Barang {{$item->nama}} Ingin Dihapus?
+                                        Yakin Data Barang {{$item->nama}} {{$item->merk}} Ingin Dihapus?
                                         </div>
                                         <div class="modal-footer">
                                         <a href="barang" class="btn btn-secondary" data-dismiss="modal">Batal</a>
