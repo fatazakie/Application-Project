@@ -81,6 +81,8 @@ class PenjualanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pen = Penjualan::find($id);
+        $pen->delete();
+        return redirect('/penjualan/');
     }
 }

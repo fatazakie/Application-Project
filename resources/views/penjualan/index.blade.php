@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="modal-footer">
                                         <a href="barang" class="btn btn-secondary" data-dismiss="modal">Batal</a>
-                                        <form action="/pembelian/{{$item->id}}" method="POST">
+                                        <form action="/penjualan/{{$item->id}}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             
