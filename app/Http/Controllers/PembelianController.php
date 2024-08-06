@@ -81,6 +81,8 @@ class PembelianController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pem = Pembelian::find($id);
+        $pem->delete();
+        return redirect('/pembelian/');
     }
 }
