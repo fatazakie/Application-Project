@@ -22,7 +22,8 @@ class PenjualanController extends Controller
      */
     public function create()
     {
-        //
+        return view('penjualan.form');
+        
     }
 
     /**
@@ -30,7 +31,15 @@ class PenjualanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pen = new Penjualan();
+        $pen->kode = $request->kode; 
+        $pen->merk = $request->merk; 
+        $pen->nama = $request->nama;
+        $pen->jual = $request->jual;
+        $pen->qty =$request->qty;
+        $pen->save();
+
+        return redirect('/penjualan/');
     }
 
     /**

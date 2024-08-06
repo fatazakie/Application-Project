@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a href="#">Home</a></li>
           </ol>
         <div class="card-header">
-            <a href="/pembelian/form/" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data Penjualan</a>
+            <a href="/penjualan/form/" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data Penjualan</a>
         </div>
         <div class="container-fluid">
 
