@@ -29,24 +29,24 @@
                                     <th>Kode</th>
                                     <th>Merk Barang</th>
                                     <th>Nama Barang</th>
-                                    <th>Modal Barang</th>
+                                    <th>Harga Beli</th>
                                     <th>QTY</th>
                                     <th>Aksi</th>
                         
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($bar as $item )
+                                @forelse ($pem as $item )
                                 <tr>
                                     <td>{{ $nomor++ }}</td>
                                     <td>{{ $item->kode }}</td>
                                     <td>{{ $item->merk }}</td>
                                     <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->modal }}</td>
+                                    <td>{{ $item->beli }}</td>
                                     <td>{{ $item->qty }}</td>
                                     
                                     <td>
-                                        <a href="/barang/edit/{{$item->id}}" class="btn btn-info btn-sm"><em class="fa fa-pencil-alt"></em></a>
+                                        <a href="/pembelian/edit/{{$item->id}}" class="btn btn-info btn-sm"><em class="fa fa-pencil-alt"></em></a>
 
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus{{$item->id}}">
                                     <em class="fa fa-trash"></em>
@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="modal-footer">
                                         <a href="barang" class="btn btn-secondary" data-dismiss="modal">Batal</a>
-                                        <form action="/barang/{{$item->id}}" method="POST">
+                                        <form action="/pembelian/{{$item->id}}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             

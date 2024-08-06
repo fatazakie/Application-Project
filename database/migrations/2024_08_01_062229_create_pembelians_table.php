@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('kode')->unique();
             $table->string('merk');
+            $table->string('nama');
+            $table->string('beli');
+            $table->string('qty');
             $table->timestamps();
         });
     }

@@ -13,8 +13,8 @@ class PembelianController extends Controller
     public function index()
     {
         $nomor =1;
-        $bar = Pembelian::all();
-        return view('pembelian.index',compact('nomor','bar'));
+        $pem = Pembelian::all();
+        return view('pembelian.index',compact('nomor','pem'));
     }
 
     /**
@@ -31,7 +31,15 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pem = new pembelian();
+        $pem->kode = $request->kode; 
+        $pem->merk = $request->merk; 
+        $pem->nama = $request->nama;
+        $pem->beli = $request->beli;
+        $pem->qty =$request->qty;
+        $pem->save();
+
+        return redirect('/pembelian/');
     }
 
     /**
