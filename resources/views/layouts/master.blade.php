@@ -62,9 +62,9 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="html/index-invest.html" class="nk-menu-link">
+                                    <a href="/report/" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
-                                        <span class="nk-menu-text">About</span>
+                                        <span class="nk-menu-text">Report</span>
                                     </a>
                                     </li>
                                     
