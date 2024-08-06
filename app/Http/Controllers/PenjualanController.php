@@ -55,7 +55,8 @@ class PenjualanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pen =Penjualan::find($id);
+        return view('penjualan.edit',compact('pen'));
     }
 
     /**
@@ -63,7 +64,16 @@ class PenjualanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pen =Penjualan::find($id);
+
+        $pen->kode = $request->kode; 
+        $pen->merk = $request->merk; 
+        $pen->nama =$request->nama;
+        $pen->jual =$request->jual;
+        $pen->qty =$request->qty;
+        $pen->save();
+
+        return redirect('/penjualan/');  
     }
 
     /**
