@@ -31,7 +31,7 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-        $pem = new pembelian();
+        $pem = new Pembelian();
         $pem->kode = $request->kode; 
         $pem->merk = $request->merk; 
         $pem->nama = $request->nama;
@@ -55,7 +55,8 @@ class PembelianController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pem =Pembelian::find($id);
+        return view('pembelian.edit',compact('pem'));
     }
 
     /**
@@ -63,7 +64,16 @@ class PembelianController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pem =Pembelian::find($id);
+
+        $pem->kode = $request->kode; 
+        $pem->merk = $request->merk; 
+        $pem->nama =$request->nama;
+        $pem->beli =$request->beli;
+        $pem->qty =$request->qty;
+        $pem->save();
+
+        return redirect('/pembelian/');   
     }
 
     /**
