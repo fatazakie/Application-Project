@@ -57,7 +57,7 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="html/index-analytics.html" class="nk-menu-link">
+                                    <a href="/penjualan/" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-growth"></em></span>
                                         <span class="nk-menu-text">Penjualan</span>
                                     </a>

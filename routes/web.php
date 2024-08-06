@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\PenjualanController;
 use App\Models\barang;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,4 +43,12 @@ Route::post('/pembelian/form/', [PembelianController::class, 'store']);
 Route::get('/pembelian/edit/{id}', [PembelianController::class, 'edit']);
 Route::put('/pembelian/{id}', [PembelianController::class, 'update']);
 Route::delete('/pembelian/{id}', [PembelianController::class, 'destroy']);
+
+
+Route::get('penjualan', [PenjualanController::class, 'index']);
+Route::get('/penjualan/form/', [PenjualanController::class, 'create']);
+Route::post('/penjualan/form/', [PenjualanController::class, 'store']);
+Route::get('/penjualan/edit/{id}', [PenjualanController::class, 'edit']);
+Route::put('/penjualan/{id}', [PenjualanController::class, 'update']);
+Route::delete('/penjualan/{id}', [PenjualanController::class, 'destroy']);
 
