@@ -5,7 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class barang extends Model
+class Barang extends Model
 {
-    use HasFactory;
+  /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'barangs';
+    protected $primaryKey = 'id';
+
+    public function reports(){
+        return $this->belongTo(Report::class);
+    }
 }

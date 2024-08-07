@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->string('kode')->unique();
+            $table->bigInteger('barangs_id');
+            $table->string('merk');
+            $table->string('nama');
+            $table->string('beli');
+            $table->string('modal');
+            $table->string('jual');
+            $table->string('qty');
+            $table->string('total');
+            $table->string('hutang');
+            $table->string('laba');
+            $table->string('zakat');
+            $table->string('laba_bersih');
             $table->timestamps();
         });
     }

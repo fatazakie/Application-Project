@@ -6,18 +6,18 @@
 @section('content')
     <div class="card">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item ms-3"><a href="#">Home</a></li>
           </ol>
         <div class="card-header">
-            <a href="/penjualan/form/" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data Penjualan</a>
+            <a href="/penjualan/form/" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data Penjualan</a> 
         </div>
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Tabel Penjualan</h1>
+            {{-- <h1 class="h3 mb-2 text-gray-800">Tabel Penjualan</h1> --}}
             <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
+            <div class="card shadow mb-4 mt-2">
+                <div class="card py-3 ms-4">
                     <h6 class="m-0 font-weight-bold text-primary">Tabel Penjualan</h6>
                 </div>
                 <div class="card-body">

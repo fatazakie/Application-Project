@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\report;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -11,7 +12,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $nomor =1;
+        $rep = report::all();
+        return view('report.index',compact('nomor','rep'));
     }
 
     /**
@@ -19,7 +22,8 @@ class ReportController extends Controller
      */
     public function create()
     {
-        //
+        return view('report.form');
+        
     }
 
     /**
