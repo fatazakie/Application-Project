@@ -19,12 +19,8 @@
         </h3>
 
         <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-            <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-            <i class="fas fa-times"></i>
-            </button>
+          <a href="/barang/" class="btn-close" data-dismiss="modal" aria-label="Close"><em class="icon ni ni-cross-sm"></em></a>
+
         </div>
         </div>
         <div class="card-body">

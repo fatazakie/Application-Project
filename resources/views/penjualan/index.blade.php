@@ -17,8 +17,8 @@
             {{-- <h1 class="h3 mb-2 text-gray-800">Tabel Penjualan</h1> --}}
             <!-- DataTales Example -->
             <div class="card shadow mb-4 mt-2">
-                <div class="card py-3 ms-4">
-                    <h6 class="m-0 font-weight-bold text-primary">Tabel Penjualan</h6>
+                <div class="card py-3 ms-3">
+                    <h6 class="m-0 font-weight-bold text-primary ms-3">Tabel Penjualan</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -58,7 +58,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
-                                        <a href="barang" class="btn-close" data-dismiss="modal" aria-label="Close"></a>
+                                        <a href="penjualan" class="btn-close" data-dismiss="modal" aria-label="Close"></a>
                                         </div>
                                         <div class="modal-body">
                                         Yakin Data Barang {{$item->nama}} {{$item->merk}} Ingin Dihapus?

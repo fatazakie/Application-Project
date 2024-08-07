@@ -55,6 +55,14 @@ Route::put('/penjualan/{id}', [PenjualanController::class, 'update']);
 Route::delete('/penjualan/{id}', [PenjualanController::class, 'destroy']);
 
 
+Route::get('hutang', [PenjualanController::class, 'index']);
+Route::get('/hutang/form/', [PenjualanController::class, 'create']);
+Route::post('/hutang/form/', [PenjualanController::class, 'store']);
+Route::get('/hutang/edit/{id}', [PenjualanController::class, 'edit']);
+Route::put('/hutang/{id}', [PenjualanController::class, 'update']);
+Route::delete('/hutang/{id}', [PenjualanController::class, 'destroy']);
+
+
 Route::get('report', [ReportController::class, 'index']);
 Route::get('/report/form/', [ReportController::class, 'create']);
 Route::post('/report/form/', [ReportController::class, 'store']);

@@ -17,8 +17,8 @@
             {{-- <h1 class="h3 mb-2 text-gray-800">Tabel Pembelian</h1> --}}
             <!-- DataTales Example -->
             <div class="card shadow mb-4 mt-2">
-                <div class="card py-3 ms-4">
-                    <h6 class="m-0 font-weight-bold text-primary">Tabel Pembelian</h6>
+                <div class="card py-3 ms-3">
+                    <h6 class="m-0 font-weight-bold text-primary ms-3">Tabel Pembelian</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

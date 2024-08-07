@@ -15,6 +15,8 @@
 
 
         <div class="card-tools">
+          <a href="/penjualan/" class="btn-close" data-dismiss="modal" aria-label="Close"><em class="icon ni ni-cross-sm"></em></a>
+
         </div>
         </div>
         <div class="card-body">
