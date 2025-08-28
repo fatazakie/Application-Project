@@ -7,6 +7,8 @@
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="{{ asset('./images/favicon.png')}}">
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/js/dataTables.min.js">
@@ -18,6 +20,15 @@
     <link rel="stylesheet" href="{{ asset('/assets/css/dashlite.css?ver=3.2.0')}}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('./assets/css/theme.css?ver=3.2.0')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('./assets/css/libs/fontawesome-icons.css')}}"> 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
@@ -33,7 +44,7 @@
                     </div>
                     <div class="nk-sidebar-brand">
                             {{-- <span class="nk-menu-icon" ><em class="icon ni ni-sign-zcash-alt"></em></span>  --}}
-                       <h4> <span class="nk-menu-text">Zhakie Electric</span></h4>
+                       <h4> <span class="overline-title text-primary-alt">Zhakie Electric</span></h4>
 
                     </div>
                 </div><!-- .nk-sidebar-element -->
@@ -65,13 +76,13 @@
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="/hutang/" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
+                                        <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
                                         <span class="nk-menu-text">Hutang</span>
                                     </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li>
                                 <li class="nk-menu-item">
                                     <a href="/report/" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
+                                        <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
                                         <span class="nk-menu-text">Report</span>
                                     </a>
                                     </li>
@@ -180,7 +191,37 @@
                     @yield('bc')
                 </div>
                 <!-- /.container-fluid -->
+                @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+                        @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
 
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+            
                 <!-- Main content -->
                 <section class="content">
                     <!-- Default box -->
@@ -358,7 +399,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div>`
             </div><!-- .modal-content -->
         </div><!-- .modla-dialog -->
     </div><!-- .modal -->
@@ -369,10 +410,24 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/v/bs5/dt-2.1.3/b-3.1.1/b-html5-3.1.1/b-print-3.1.1/datatables.min.css" rel="stylesheet">
  
+<script src="https://example.com/fontawesome/v6.6.0/js/conflict-detection.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-2.1.3/b-3.1.1/b-html5-3.1.1/b-print-3.1.1/datatables.min.js"></script>
 
+@yield('scripts')
+
+<script>
+    // Auto-close alert setelah 3 detik
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 3000);
+</script>
+
+
+
 </body>
 
-</html>
+</html>`

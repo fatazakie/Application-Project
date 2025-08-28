@@ -10,7 +10,7 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="./images/favicon.png">
     <!-- Page Title  -->
-    <title>Login | DashLite Admin Template</title>
+    <title>Login | Zhakie Elektrik</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="./assets/css/dashlite.css?ver=3.2.0">
     <link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=3.2.0">
@@ -37,7 +37,7 @@
                                     <div class="nk-block-head-content">
                                         <h4 class="nk-block-title">Sign-In</h4>
                                         <div class="nk-block-des">
-                                            <p>Access the Dashlite panel using your email and passcode.</p>
+                                            <p>Selamat Datang Di Toko Zhakie Elektrik</p>
                                         </div>
                                     </div>
                                 </div>

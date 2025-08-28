@@ -12,13 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('barangs', function (Blueprint $table) {
-            
             $table->id();
-            $table->string('kode')->unique();
-            $table->string('merk');
-            $table->string('nama');
-            $table->string('modal');
-            $table->string('qty');
+            $table->string('id_brg')->unique();
+            $table->string('id_merk')->index();
+            $table->string('id_jenis')->index();            
+            $table->string('nm_brg');
+            $table->string('nm_merk');
+            $table->string('jenis_brg');
+            $table->integer('hrg_beli')->nullable();
+            $table->integer('hrg_jual')->nullable();
+            $table->integer('qty'); // Mengubah dari string ke integer
             $table->timestamps();
         });
     }

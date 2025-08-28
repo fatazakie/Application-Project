@@ -6,10 +6,25 @@
 @section('content')
     <div class="card">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item ms-3"><a href="#">Home</a></li>
+            <li class="breadcrumb-item ms-3"><a href="/">Dashboard</a></li>
+        <li class="breadcrumb-item active">Penjualan</li>
+
           </ol>
+
+          @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
+
         <div class="card-header">
-            <a href="/penjualan/form/" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data Penjualan</a> 
+            <a href="/penjualan/form/" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data Penjualan</a>
         </div>
         <div class="container-fluid">
 
@@ -22,62 +37,66 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="DataTable" width="100%" cellspacing="1">
+                        <table class="table table-bordered" id="example1" width="100%" cellspacing="1">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kode</th>
+                                    <th>ID Penjualan</th>
+                                    <th>Tanggal Penjualan</th>
                                     <th>Merk Barang</th>
                                     <th>Nama Barang</th>
-                                    <th>Harga Jual</th>
+                                    <th>Jenis Barang</th>
+                                    <th>Harga jual</th>
                                     <th>QTY</th>
                                     <th>Aksi</th>
-                        
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($pen as $item )
-                                <tr>
-                                    <td>{{ $nomor++ }}</td>
-                                    <td>{{ $item->kode }}</td>
-                                    <td>{{ $item->merk }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->jual }}</td>
-                                    <td>{{ $item->qty }}</td>
-                                    
-                                    <td>
-                                        <a href="/penjualan/edit/{{$item->id}}" class="btn btn-info btn-sm"><em class="fa fa-pencil-alt"></em></a>
-
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus{{$item->id}}">
-                                    <em class="fa fa-trash"></em>
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="hapus{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
-                                        <a href="penjualan" class="btn-close" data-dismiss="modal" aria-label="Close"></a>
+                                @foreach ($item->details as $detail)
+                                    <tr>
+                                        <td>{{ $nomor++ }}</td>
+                                        <td>{{ $item->id_penjualan }}</td>
+                                        <td>{{ $item->tgl_penjualan }}</td>
+                                        <td>{{ $detail->merk->nm_merk ?? '-' }}</td>
+                                        <td>{{ $detail->barang->nm_brg ?? '-' }}</td>
+                                        <td>{{ $detail->jenis->jenis_brg ?? '-' }}</td>
+                                        <td>Rp {{ number_format($detail->hrg_jual, 0, ',', '.') }}</td>
+                                        <td>{{ $detail->qty }}</td>
+                                        <td>  <a href="{{ route('penjualan.edit', $item->id_penjualan) }}" class="btn btn-warning btn-sm">  <i class="fa fa-pencil-alt"></i></a>
+                                          
+                                        </a> </td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus{{$item->id}}">
+                                                <i class="fa fa-trash"></i>
+                                            </button> </td>
+                                
+                                
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="hapus{{ $item->id}}" tabindex="-1" aria-labelledby="hapusLabel{{ $item->id}}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Konfirmasi Hapus</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Yakin Data Penjualan {{ $item->barang->nm_brg ?? '-' }} ingin dihapus?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="/penjualan" class="btn btn-secondary" data-dismiss="modal">Batal</a>
+                                                        <form action="/penjualan/{{$item->id_penjualan}}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-primary">Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
-                                        Yakin Data Barang {{$item->nama}} {{$item->merk}} Ingin Dihapus?
-                                        </div>
-                                        <div class="modal-footer">
-                                        <a href="barang" class="btn btn-secondary" data-dismiss="modal">Batal</a>
-                                        <form action="/penjualan/{{$item->id}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            
-                                            <button type="submit" class="btn btn-primary">Hapus</button>
-                                        </form>
-
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                    </td>
+                                </tr>
+                            @endforeach
                         @empty
                         <tr>
                             <td colspan="4">Tidak Ada Data</td>

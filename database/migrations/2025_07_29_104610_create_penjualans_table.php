@@ -6,25 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('penjualans', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode')->unique();
-            $table->string('merk');
-            $table->string('nama');
-            $table->string('jual');
-            $table->string('qty');
+            $table->string('id_penjualan')->primary();
+            $table->date('tgl_penjualan');
+            
+            // Kalau ada pelanggan / user
+            // $table->unsignedBigInteger('id_pelanggan')->nullable();
+            // $table->foreign('id_pelanggan')->references('id')->on('pelanggans');
+
+            $table->decimal('total', 15, 2)->default(0); // total transaksi
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('penjualans');

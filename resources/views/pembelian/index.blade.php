@@ -1,138 +1,109 @@
-
 @extends('layouts.master')
 @section('title','Halaman Pembelian')
 @section('heading','Halaman Pembelian')
 
 @section('content')
-    <div class="card">
-        <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item ms-3"><a href="#">Home</a></li>
-          </ol>
-        <div class="card-header">
-            <a href="/pembelian/form/" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data Pembelian</a>
-        </div>
-        <div class="container-fluid">
+<div class="card">
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item ms-3"><a href="/">Dashboard</a></li>
+        <li class="breadcrumb-item active">Pembelian</li>
+    </ol>
 
-            <!-- Page Heading -->
-            {{-- <h1 class="h3 mb-2 text-gray-800">Tabel Pembelian</h1> --}}
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4 mt-2">
-                <div class="card py-3 ms-3">
-                    <h6 class="m-0 font-weight-bold text-primary ms-3">Tabel Pembelian</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="DataTable" width="100%" cellspacing="1">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Kode</th>
-                                    <th>Merk Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Harga Beli</th>
-                                    <th>QTY</th>
-                                    <th>Aksi</th>
-                        
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
+    <div class="card-header">
+        <a href="{{ route('pembelian.create') }}" class="btn btn-primary">
+            <i class="fa fa-plus"></i> Tambah Data Pembelian
+        </a>
+    </div>
+
+    <div class="container-fluid mt-2">
+        <div class="card shadow mb-4">
+            <div class="card py-3 ms-3">
+                <h6 class="m-0 font-weight-bold text-primary ms-3">Tabel Pembelian</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="DataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>ID Pembelian</th>
+                                <th>Tanggal Pembelian</th>
+                                <th>Merk Barang</th>
+                                <th>Nama Barang</th>
+                                <th>Jenis Barang</th>
+                                <th>Harga Beli</th>
+                                <th>QTY</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($pem as $item )
+                                @foreach ($item->details as $detail)
+                                    <tr>
+                                        <td>{{ $nomor++ }}</td>
+                                        <td>{{ $item->id_pembelian }}</td>
+                                        <td>{{ $item->tgl_pembelian }}</td>
+                                        <td>{{ $detail->merk->nm_merk ?? '-' }}</td>
+                                        <td>{{ $detail->barang->nm_brg ?? '-' }}</td>
+                                        <td>{{ $detail->jenis->jenis_brg ?? '-' }}</td>
+                                        <td>Rp {{ number_format($detail->hrg_beli, 0, ',', '.') }}</td>
+                                        <td>{{ $detail->qty }}</td>
+                                        <td> <a href="{{ route('pembelian.edit', $item->id_pembelian) }}" class="btn btn-info btn-sm">
+                                            <i class="fa fa-pencil-alt"></i>
+                                        </a> </td>
+                                        <td>  <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus{{ $item->id }}">
+                                            <i class="fa fa-trash"></i>
+                                        </button> </td>
+                                
+
+                                        <!-- Modal Hapus -->
+                                        <div class="modal fade" id="hapus{{ $item->id}}" tabindex="-1" aria-labelledby="hapusLabel{{ $item->id}}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Konfirmasi Hapus</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Yakin Data Pembelian ingin dihapus?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                       <form action="/pembelian/{{$item->id_pembelian}}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-primary">Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($pem as $item )
+                                @endforeach
+                            @empty
                                 <tr>
-                                    <td>{{ $nomor++ }}</td>
-                                    <td>{{ $item->kode }}</td>
-                                    <td>{{ $item->merk }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->beli }}</td>
-                                    <td>{{ $item->qty }}</td>
-                                    
-                                    <td>
-                                        <a href="/pembelian/edit/{{$item->id}}" class="btn btn-info btn-sm"><em class="fa fa-pencil-alt"></em></a>
-
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus{{$item->id}}">
-                                    <em class="fa fa-trash"></em>
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="hapus{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
-                                        <a href="barang" class="btn-close" data-dismiss="modal" aria-label="Close"></a>
-                                        </div>
-                                        <div class="modal-body">
-                                        Yakin Data Barang {{$item->nama}} {{$item->merk}} Ingin Dihapus?
-                                        </div>
-                                        <div class="modal-footer">
-                                        <a href="barang" class="btn btn-secondary" data-dismiss="modal">Batal</a>
-                                        <form action="/pembelian/{{$item->id}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            
-                                            <button type="submit" class="btn btn-primary">Hapus</button>
-                                        </form>
-
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="4">Tidak Ada Data</td>
-                        </tr>
-                        @endforelse
+                                    <td colspan="9" class="text-center">Tidak Ada Data</td>
+                                </tr>
+                            @endforelse
                         </tbody>
-                        </table>
-                    </div>
+                    </table>
                 </div>
             </div>
-
         </div>
-        <!-- /.card-footer-->
     </div>
+</div>
 @endsection
-
-
-@section('css')
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
-@endsection
-
-@section('js')
-    <!-- DataTables  & Plugins -->
-    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('plugins/jszip/jszip.min.js')}}"></script>
-    <script src="{{ asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
-    <script src="{{ asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-
-    <!-- Page specific script -->
-    <script>
-        $(function () {
-        $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-        });
-    </script>
-@endsection
+    
